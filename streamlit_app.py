@@ -35,8 +35,8 @@ tokenizer = pickle.load(open(filename, 'rb'))
 #lemmatizer = WordNetLemmatizer()
 st.title('Sexual Harassment')
 st.image('https://www.talkingnibs.com/wp-content/uploads/2018/03/MeToo-2.jpg', width = 375)
-query = st.text_input('Enter the event description:')
-if query == None or query == '':
+text = st.text_input('Enter the event description:')
+if text == None or text == '':
   st.markdown('**Enter a text to get result...**')
 
 else:
@@ -81,7 +81,7 @@ else:
   #def end_to_end_pipeline(string):
   path = 'model2_gv_deepl.h5'
   result = []
-  x = preprocess(query)
+  x = preprocess(text)
   sent_token = tokenizer.texts_to_sequences([x])
   sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
   model = tf.keras.models.load_model(path)
