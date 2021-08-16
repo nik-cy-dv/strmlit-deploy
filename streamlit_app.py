@@ -74,7 +74,10 @@ else:
     text = text.lower().strip()   
 
     return text
-
+  
+  st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
+  st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
+	
   def end_to_end_pipeline(string):
     path = 'model2_gv_deepl.h5'
     result = []
@@ -84,9 +87,6 @@ else:
     sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
     model = tf.keras.models.load_model(path)
     pred = model.predict(sent_token_padd)
-
-    #st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
-    #st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
   
     row, column = pred.shape
     predict = np.zeros((row, column))
