@@ -8,9 +8,10 @@ import tensorflow as tf
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from nltk.stem import WordNetLemmatizer
-nltk.download('wordnet')
-nltk.download('stopwords')
+#nltk.download('wordnet')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
+from nltk.corpus import wordnet
 
 from collections import namedtuple
 import altair as alt
