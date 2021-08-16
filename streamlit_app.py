@@ -26,11 +26,11 @@ tokenizer = pickle.load(open(filename, 'rb'))
 #cv=pickle.load(open('tranform.pkl','rb'))
 #app = Flask(__name__)
 
-@app.route('/')
-def home():
-	return render_template('home.html')
+#@app.route('/')
+#def home():
+#	return render_template('home.html')
 
-@app.route('/predict',methods=['POST'])
+#@app.route('/predict',methods=['POST'])
 
 #lemmatizer = WordNetLemmatizer()
 def preprocess(text):
@@ -84,8 +84,8 @@ def end_to_end_pipeline(string):
       if pred[i,j]>0.5:
         predict[i,j] = 1
   
-  if request.method == 'POST':
-      for k in range(predict.shape[0]):
+  #if request.method == 'POST':
+   for k in range(predict.shape[0]):
           if predict[k][0] == 1.0:
               result.append('commenting')
           if predict[k][1] == 1.0:
@@ -94,7 +94,7 @@ def end_to_end_pipeline(string):
               result.append('groping')
           if np.sum(predict) == 0.0:
               result.append('None')
-  return render_template('result.html',prediction = result)
+  #return render_template('result.html',prediction = result)
     
   #print(f'possible action : {result}')
 
