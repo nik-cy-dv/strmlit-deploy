@@ -96,19 +96,7 @@ else:
       result.append('groping')
     if np.sum(predict) == 0.0:
       result.append('None')
-  #return render_template('result.html',prediction = result)
     
   print(f'possible action : {result}')
   st.markdown(result)
 
-	#if request.method == 'POST':
-	#	message = request.form['message']
-	#	data = [message]
-	#	vect = cv.transform(data).toarray()
-	#	my_prediction = clf.predict(vect)
-	#return render_template('result.html',prediction = my_prediction)
-
-
-
-#if __name__ == '__main__':
-#	app.run(debug=True)
