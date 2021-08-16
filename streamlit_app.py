@@ -85,8 +85,8 @@ else:
     model = tf.keras.models.load_model(path)
     pred = model.predict(sent_token_padd)
 
-    st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
-    st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
+    #st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
+    #st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
   
     row, column = pred.shape
     predict = np.zeros((row, column))
@@ -108,7 +108,7 @@ else:
         result.append('None')
   #return render_template('result.html',prediction = result)
     
-  #print(f'possible action : {result}')
+    print(f'possible action : {result}')
     st.markdown(result)
 
 	#if request.method == 'POST':
