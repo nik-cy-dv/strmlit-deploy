@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,request
+#from flask import Flask,render_template,url_for,request
 import pandas as pd 
 import numpy as np
 import pickle
@@ -12,12 +12,18 @@ nltk.download('wordnet')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 
+from collections import namedtuple
+import altair as alt
+import math
+import pandas as pd
+import streamlit as st
+
 # load the model from disk
 path = 'model2_gv_deepl.h5'
 filename = 'tokenizer.pkl'
 tokenizer = pickle.load(open(filename, 'rb'))
 #cv=pickle.load(open('tranform.pkl','rb'))
-app = Flask(__name__)
+#app = Flask(__name__)
 
 @app.route('/')
 def home():
@@ -100,5 +106,5 @@ def end_to_end_pipeline(string):
 
 
 
-if __name__ == '__main__':
-	app.run(debug=True)
+#if __name__ == '__main__':
+#	app.run(debug=True)
