@@ -25,7 +25,7 @@ filename = 'tokenizer.pkl'
 tokenizer = pickle.load(open(filename, 'rb'))
 
 st.title('Sexual Harassment Classification')
-st.image('https://www.democracyandme.org/wp-content/uploads/2019/10/Me-Too-Image-2.jpeg', width = 375)
+st.image('https://www.democracyandme.org/wp-content/uploads/2019/10/Me-Too-Image-2.jpeg', width = 475)
 text = st.text_input('Enter the event description:')
 if text == None or text == '':
   st.markdown('**Enter a text in '' to get result...**')
