@@ -81,8 +81,8 @@ else:
   #def end_to_end_pipeline(string):
   path = 'model2_gv_deepl.h5'
   result = []
-  x = preprocess(string)
-  sent_token = tokenizer.texts_to_sequences([x]
+  x = preprocess(query)
+  sent_token = tokenizer.texts_to_sequences([x])
   sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
   model = tf.keras.models.load_model(path)
   pred = model.predict(sent_token_padd)
