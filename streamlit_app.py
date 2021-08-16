@@ -78,38 +78,37 @@ else:
   st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
   st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
 	
-  def end_to_end_pipeline(string):
-    path = 'model2_gv_deepl.h5'
-    result = []
-    x = preprocess(string)
-    sent_token = tokenizer.texts_to_sequences([x])
+  #def end_to_end_pipeline(string):
+  path = 'model2_gv_deepl.h5'
+  result = []
+  x = preprocess(string)
+  sent_token = tokenizer.texts_to_sequences([x]
+  sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
+  model = tf.keras.models.load_model(path)
+  pred = model.predict(sent_token_padd)
 
-    sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
-    model = tf.keras.models.load_model(path)
-    pred = model.predict(sent_token_padd)
-  
-    row, column = pred.shape
-    predict = np.zeros((row, column))
-    for i in range(row):
-      for j in range(column):
-        if pred[i,j]>0.5:
-          predict[i,j] = 1
+  row, column = pred.shape
+  predict = np.zeros((row, column))
+  for i in range(row):
+    for j in range(column):
+      if pred[i,j]>0.5:
+        predict[i,j] = 1
           
 
     #if request.method == 'POST':
-    for k in range(predict.shape[0]):
-      if predict[k][0] == 1.0:
-        result.append('commenting')
-      if predict[k][1] == 1.0:
-        result.append('ogling')
-      if predict[k][2] == 1.0:
-        result.append('groping')
-      if np.sum(predict) == 0.0:
-        result.append('None')
+  for k in range(predict.shape[0]):
+    if predict[k][0] == 1.0:
+      result.append('commenting')
+    if predict[k][1] == 1.0:
+      result.append('ogling')
+    if predict[k][2] == 1.0:
+      result.append('groping')
+    if np.sum(predict) == 0.0:
+      result.append('None')
   #return render_template('result.html',prediction = result)
     
-    print(f'possible action : {result}')
-    st.markdown(result)
+  print(f'possible action : {result}')
+  st.markdown(result)
 
 	#if request.method == 'POST':
 	#	message = request.form['message']
