@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import pickle
 import re
-#import nltk
+import nltk
 import tensorflow as tf
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from nltk.stem import WordNetLemmatizer
-#nltk.download('wordnet')
-#nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 
