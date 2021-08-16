@@ -33,9 +33,17 @@ tokenizer = pickle.load(open(filename, 'rb'))
 #@app.route('/predict',methods=['POST'])
 
 #lemmatizer = WordNetLemmatizer()
-def preprocess(text):
+st.title('Sexual Harassment')
+st.image('https://www.talkingnibs.com/wp-content/uploads/2018/03/MeToo-2.jpg', width = 375)
+query = st.text_input('Enter the event description:')
+if query == None or query == '':
+  st.markdown('**Enter a text to get result...**')
+
+else:
+  def preprocess(text):
     
     """performs common expansion of english words, preforms preprocessing"""
+  
     lemmatizer = WordNetLemmatizer()
     text = re.sub(r"won\'t", "will not", text)   # decontracting the words
     text = re.sub(r"can\'t", "can not", text)
@@ -67,36 +75,40 @@ def preprocess(text):
 
     return text
 
-def end_to_end_pipeline(string):
-  path = 'model2_gv_deepl.h5'
-  result = []
-  x = preprocess(string)
-  sent_token = tokenizer.texts_to_sequences([x])
+  def end_to_end_pipeline(string):
+    path = 'model2_gv_deepl.h5'
+    result = []
+    x = preprocess(string)
+    sent_token = tokenizer.texts_to_sequences([x])
 
-  sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
-  model = tf.keras.models.load_model(path)
-  pred = model.predict(sent_token_padd)
+    sent_token_padd = pad_sequences(sent_token, maxlen=300, dtype='int32', padding='post', truncating='post')
+    model = tf.keras.models.load_model(path)
+    pred = model.predict(sent_token_padd)
   
-  row, column = pred.shape
-  predict = np.zeros((row, column))
-  for i in range(row):
-    for j in range(column):
-      if pred[i,j]>0.5:
-        predict[i,j] = 1
+    row, column = pred.shape
+    predict = np.zeros((row, column))
+    for i in range(row):
+      for j in range(column):
+        if pred[i,j]>0.5:
+          predict[i,j] = 1
+          
+    st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
   
-  #if request.method == 'POST':
-  for k in range(predict.shape[0]):
-    if predict[k][0] == 1.0:
-      result.append('commenting')
-    if predict[k][1] == 1.0:
-      result.append('ogling')
-    if predict[k][2] == 1.0:
-      result.append('groping')
-    if np.sum(predict) == 0.0:
-      result.append('None')
+    #if request.method == 'POST':
+    for k in range(predict.shape[0]):
+      if predict[k][0] == 1.0:
+        result.append('commenting')
+      if predict[k][1] == 1.0:
+        result.append('ogling')
+      if predict[k][2] == 1.0:
+        result.append('groping')
+      if np.sum(predict) == 0.0:
+        result.append('None')
   #return render_template('result.html',prediction = result)
     
-  print(f'possible action : {result}')
+  #print(f'possible action : {result}')
+    st.markdown(result)
 
 	#if request.method == 'POST':
 	#	message = request.form['message']
