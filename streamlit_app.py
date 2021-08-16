@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import re
-import nltk.text
+import nltk
 import tensorflow as tf
 from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
