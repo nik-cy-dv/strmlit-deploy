@@ -108,8 +108,8 @@ else:
         result.append('None')
   #return render_template('result.html',prediction = result)
     
-  print(f'possible action : {result}')
-  st.markdown(result)
+    print(f'possible action : {result}')
+    st.markdown(result)
 
 	#if request.method == 'POST':
 	#	message = request.form['message']
