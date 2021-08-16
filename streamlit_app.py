@@ -85,15 +85,15 @@ def end_to_end_pipeline(string):
         predict[i,j] = 1
   
   #if request.method == 'POST':
-   for k in range(predict.shape[0]):
-          if predict[k][0] == 1.0:
-              result.append('commenting')
-          if predict[k][1] == 1.0:
-              result.append('ogling')
-          if predict[k][2] == 1.0:
-              result.append('groping')
-          if np.sum(predict) == 0.0:
-              result.append('None')
+  for k in range(predict.shape[0]):
+	if predict[k][0] == 1.0:
+		result.append('commenting')
+        if predict[k][1] == 1.0:
+                result.append('ogling')
+        if predict[k][2] == 1.0:
+                result.append('groping')
+        if np.sum(predict) == 0.0:
+                result.append('None')
   #return render_template('result.html',prediction = result)
     
   #print(f'possible action : {result}')
