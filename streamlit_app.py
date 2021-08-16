@@ -23,21 +23,12 @@ import streamlit as st
 path = 'model2_gv_deepl.h5'
 filename = 'tokenizer.pkl'
 tokenizer = pickle.load(open(filename, 'rb'))
-#cv=pickle.load(open('tranform.pkl','rb'))
-#app = Flask(__name__)
 
-#@app.route('/')
-#def home():
-#	return render_template('home.html')
-
-#@app.route('/predict',methods=['POST'])
-
-#lemmatizer = WordNetLemmatizer()
-st.title('Sexual Harassment')
-st.image('https://www.talkingnibs.com/wp-content/uploads/2018/03/MeToo-2.jpg', width = 375)
+st.title('Sexual Harassment Classification')
+st.image('https://www.democracyandme.org/wp-content/uploads/2019/10/Me-Too-Image-2.jpeg', width = 375)
 text = st.text_input('Enter the event description:')
 if text == None or text == '':
-  st.markdown('**Enter a text to get result...**')
+  st.markdown('**Enter a text in '' to get result...**')
 
 else:
   def preprocess(text):
@@ -75,7 +66,7 @@ else:
 
     return text
   
-  st.markdown("""<style>.big-font {font-size:20px !important;}</style>""", unsafe_allow_html=True)
+  st.markdown("""<style>.big-font</style>""", unsafe_allow_html=True)
   st.markdown('<p class="big-font">Possible Act:</p>', unsafe_allow_html=True)
 	
   #def end_to_end_pipeline(string):
